@@ -4,7 +4,8 @@ import java.lang.reflect.Field;
 
 public class JamendoFinder {
 
-    private JamendoFinder(){}
+    private JamendoFinder() {
+    }
 
     private String client_id = "a93e103b";
 
@@ -41,14 +42,14 @@ public class JamendoFinder {
     public String toURL() throws IllegalAccessException {
         StringBuilder URL = new StringBuilder();
 
-        for(Field field : this.getClass().getDeclaredFields()){
-            if(field.get(this) != null){
-                if(field.getName().equals("client_id")) URL.append("?"); else URL.append("&");
+        for (Field field : this.getClass().getDeclaredFields()) {
+            if (field.get(this) != null) {
+                if (field.getName().equals("client_id")) URL.append("?");
+                else URL.append("&");
                 URL.append(field.getName()).append("=");
-                if(field.getType().isArray()){
+                if (field.getType().isArray()) {
                     appendArray((Object[]) field.get(this), URL);
-                }
-                else{
+                } else {
                     appendObj(field.get(this), URL);
                 }
             }
@@ -57,14 +58,14 @@ public class JamendoFinder {
         return URL.toString();
     }
 
-    private void appendObj(Object obj, StringBuilder builder){
-        if(obj != null){
+    private void appendObj(Object obj, StringBuilder builder) {
+        if (obj != null) {
             builder.append(obj);
         }
     }
 
-    private <T> void appendArray(T[] array, StringBuilder stringBuilder){
-        if(array != null) {
+    private <T> void appendArray(T[] array, StringBuilder stringBuilder) {
+        if (array != null) {
             StringBuilder str = new StringBuilder();
             for (T obj : array) {
                 str.append('+');
@@ -75,18 +76,18 @@ public class JamendoFinder {
         }
     }
 
-    public static Builder newBuilder(){
+    public static Builder newBuilder() {
         return new JamendoFinder().new Builder();
     }
 
-    public enum Format{
+    public enum Format {
         xml,
         json,
         jsonpretty
 
     }
 
-    enum Speed{
+    enum Speed {
         verylow,
         low,
         medium,
@@ -95,7 +96,7 @@ public class JamendoFinder {
 
     }
 
-    enum Order{
+    enum Order {
         relevance,
         buzzrate,
         downloads_week,
@@ -115,91 +116,92 @@ public class JamendoFinder {
         id;
     }
 
-    enum Type{
+    enum Type {
         single,
         albumtrack;
     }
 
-    public class Builder{
+    public class Builder {
 
-        private Builder(){}
+        private Builder() {
+        }
 
-        public Builder client_id(String client_id){
+        public Builder client_id(String client_id) {
             JamendoFinder.this.client_id = client_id;
             return this;
         }
 
-        public Builder format(Format format){
+        public Builder format(Format format) {
             JamendoFinder.this.format = format;
             return this;
         }
 
-        public Builder offset(int offset){
+        public Builder offset(int offset) {
             JamendoFinder.this.offset = offset;
             return this;
         }
 
-        public Builder limit(String limit){
+        public Builder limit(String limit) {
             JamendoFinder.this.limit = limit;
             return this;
         }
 
-        public Builder order(Order order){
+        public Builder order(Order order) {
             JamendoFinder.this.order = order;
             return this;
         }
 
-        public Builder fullcount(boolean fullcount){
+        public Builder fullcount(boolean fullcount) {
             JamendoFinder.this.fullcount = fullcount;
             return this;
         }
 
-        public Builder id(int[] id){
+        public Builder id(int[] id) {
             JamendoFinder.this.id = id;
             return this;
         }
 
-        public Builder name(String name){
+        public Builder name(String name) {
             JamendoFinder.this.name = name;
             return this;
         }
 
-        public Builder namesearch(String namesearch){
+        public Builder namesearch(String namesearch) {
             JamendoFinder.this.namesearch = namesearch;
             return this;
         }
 
-        public Builder type(Type type){
+        public Builder type(Type type) {
             JamendoFinder.this.type = type;
             return this;
         }
 
-        public Builder album_id(int[] album_id){
+        public Builder album_id(int[] album_id) {
             JamendoFinder.this.album_id = album_id;
             return this;
         }
 
-        public Builder album_name(String album_name){
+        public Builder album_name(String album_name) {
             JamendoFinder.this.album_name = album_name;
             return this;
         }
 
-        public Builder artist_id(int[] artist_id){
+        public Builder artist_id(int[] artist_id) {
             JamendoFinder.this.artist_id = artist_id;
             return this;
         }
 
-        public Builder artist_name(String artist_name){
+        public Builder artist_name(String artist_name) {
             JamendoFinder.this.artist_name = artist_name;
             return this;
         }
 
-        public Builder datebetween(String datebetween){
+        public Builder datebetween(String datebetween) {
             JamendoFinder.this.datebetween = datebetween;
             return this;
         }
 
-        public Builder speed(Speed[] speed){
+        public Builder speed(Speed[] speed) {
             JamendoFinder.this.speed = speed;
             return this;
         }

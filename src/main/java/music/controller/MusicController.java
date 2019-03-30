@@ -36,7 +36,7 @@ public class MusicController {
         return musicService.findTrack(request);
     }
 
-    @PostMapping(value = "/tracks/save")
+    @PostMapping(value = "/tracks/save", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void addSong(@RequestBody Track track){
         musicService.save(track);
