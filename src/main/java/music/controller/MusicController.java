@@ -21,7 +21,7 @@ public class MusicController {
 
     @ExceptionHandler({NotFoundException.class})
     public ResponseEntity<String> handleException (NotFoundException ex) {
-        return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @RequestMapping("/")

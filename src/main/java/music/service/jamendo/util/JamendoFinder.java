@@ -92,8 +92,7 @@ public class JamendoFinder {
         low,
         medium,
         high,
-        veryhigh;
-
+        veryhigh
     }
 
     enum Order {
@@ -113,12 +112,12 @@ public class JamendoFinder {
         artist_name,
         releasedate,
         duration,
-        id;
+        id
     }
 
     enum Type {
         single,
-        albumtrack;
+        albumtrack
     }
 
     public class Builder {
